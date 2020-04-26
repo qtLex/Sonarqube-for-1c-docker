@@ -11,9 +11,9 @@ services:
       - postgresql:/var/lib/postgresql
       - postgresql_data:/var/lib/postgresql/data
   sonar:
-    image: daabramov/sonarfor1c:8.0-ce-beta
+    image: sonarqube:8.2-community
     ports:
-      - "32772:9000"
+      - "80:9000"
     depends_on:
       - postgresql
     ulimits:
@@ -33,6 +33,7 @@ services:
       - sonarqube_conf:/opt/sonarqube/conf
       - sonarqube_data:/opt/sonarqube/data
       - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
 networks:
   sonarnetwork:
     driver: bridge
@@ -40,5 +41,6 @@ volumes:
   sonarqube_conf:
   sonarqube_data:
   sonarqube_extensions:
+  sonarqube_logs:
   postgresql:
   postgresql_data:
